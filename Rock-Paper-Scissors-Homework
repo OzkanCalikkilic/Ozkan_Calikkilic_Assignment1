@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class RockPaperScissorsOdev {
+    public static void main(String[] args) {
+
+        System.out.println("Let's play Rock-Paper-Scissor game. \n Click 1 for Rock. \n Click 2 for Paper. \n Click 3 for Scissor");
+
+        Scanner input = new Scanner(System.in);
+        int computerScore = 0;
+        int userScore = 0;
+        int computer;
+        int user;
+
+        while (true) {
+
+            computer = (int) (Math.random() * 3) + 1;
+            user = input.nextInt();
+
+            switch (user) {
+                case 1: //In this case, user selects rock. The winner is determined according to the choice of the computer in the following lines.
+                    if (computer == 1)
+                        System.out.println("Your Choice: Rock \nComputer's choice : Rock \n DEUCE. Try again.");
+                    else if (computer == 3) {
+                        userScore++; //In this condition, user wins and we increase user's score.
+                        System.out.println("Your Choice: Rock \nComputer's choice : Scissors \n You won");
+                    } else {
+                        computerScore++; //In this condition, computer wins and we increase computer's score.
+                        System.out.println("Your Choice: Rock \nComputer's choice : Paper \n You lost");
+                    }
+
+                    System.out.println("Scores:" + "\n computer= " + computerScore + "\n user= " + userScore);
+                    break;
+
+                case 2: //In this case, user selects Paper. The winner is determined according to the choice of the computer in the following lines.
+                    if (computer == 3) {
+                        System.out.println("Your Choice: Paper \nComputer's choice : Scissors \n You lost.");
+                        computerScore++; //In this condition, computer wins and we increase computer's score.
+                    } else if (computer == 2)
+                        System.out.println("Your Choice: Paper \nComputer's choice : Paper \n Deuce. Try again.");
+
+                    else {
+                        System.out.println("Your Choice: Paper \nComputer's choice : Rock \n You won.");
+                        userScore++; //In this condition, user wins and we increase user's score.
+                    }
+
+                    System.out.println("Scores:" + "\n computer= " + computerScore + "\n user= " + userScore);
+                    break;
+
+                case 3: //In this case, user selects Scissors. The winner is determined according to the choice of the computer in the following lines.
+
+                    if (computer == 2) {
+                        System.out.println("Your Choice: Scissors \nComputer's choice : Paper \n You won.");
+                        userScore++; //In this condition, user wins and we increase user's score.
+                    } else if (computer == 1) {
+                        System.out.println("Your Choice: Scissors \nComputer's choice : Rock \n You lost.");
+                        computerScore++; //In this condition, computer wins and we increase computer's score.
+                    } else
+                        System.out.println("Your Choice: Scissors \nComputer's choice : Scissors \n Deuce. Try again");
+
+                    System.out.println("Scores:" + "\n computer= " + computerScore + "\n user= " + userScore);
+                    break;
+
+                    default: //In this line, we warn the user to enter an available value.
+                    System.out.println("Please enter an available value.");
+            }
+
+            if ((computerScore == 5) || (userScore == 5)) { //In this if block, if the user or computer reaches five, we end the loop and write the total scores.
+                System.out.println((computerScore == 5) ? "YOU LOST THE GAME \n Your Score    " + "Computer's Score \n     " + userScore + "              " + computerScore : "YOU WON THE GAME \n Your Score    " + "Computer's Score \n      " + userScore + "              " + computerScore);
+                break;
+            }
+        }
+    }
+}
